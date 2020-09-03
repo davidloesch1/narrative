@@ -17,7 +17,7 @@ function Header(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  let greeting = props.user.loggedIn ? (
+  let greeting = props.loggedIn ? (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
       <DropdownToggle tag={Link} className="profile_link">
         <img
@@ -25,7 +25,6 @@ function Header(props) {
           alt="anonomous"
           className="rounded-circle profile"
         />
-        <p>{props.user.user}</p>
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem>
@@ -43,23 +42,19 @@ function Header(props) {
           alt="anonomous"
           className="rounded-circle profile"
         />
-        <p>Guest</p>
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem onClick={props.login}>Login</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem>Signup</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );
   return (
-    <Navbar
-      color="light"
-      light
-      expand="md"
-      className="d-flex justify-content-between align-top"
-    >
+    <Navbar color="dark" lights className="justify-content-between sticky-top">
       <Form xs="auto" className="align-top">
         <Input
-          className="mn-100 "
+          className="form-control-sm"
           name="search"
           id="searchBar"
           placeholder="Search"

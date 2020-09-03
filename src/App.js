@@ -8,6 +8,8 @@ import { Lost } from "./Lost";
 import Header from "./Header";
 import Signup from "./Signup";
 import PrivateRoute from "./PrivateRoute";
+import { v4 as uuidv4 } from "uuid";
+
 const axios = require("axios").default;
 axios.defaults.baseURL = "http://localhost:5000";
 
@@ -17,6 +19,56 @@ class App extends React.Component {
     this.state = {
       loggedIn: false,
       user: null,
+      stories: [
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+        {
+          id: uuidv4(),
+          title: "The Joker",
+          plot:
+            "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
+      ],
     };
   }
 
@@ -83,13 +135,18 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <Header user={this.state} login={this.login} logout={this.logout} />
+          <Header
+            user={this.state.user}
+            login={this.login}
+            logout={this.logout}
+            loggedIn={this.state.loggedIn}
+          />
 
           <Switch>
             <Route
               exact
               path="/"
-              component={() => <Home user={this.state} />}
+              component={() => <Home data={this.state} />}
             />
             <Route
               exact
