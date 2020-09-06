@@ -29,37 +29,12 @@
   transition-property: all;
 }
 
-.collapse .show {
-  height: auto;
-}
-
 .card-container {
   font-size: 1rem;
   line-height: 1.5;
+  padding: 3%;
 }
 
-.collapse:not(.show) {
-  display: block;
-  height: 13rem;
-  overflow: hidden;
-}
-
-.collapsing {
-  position: relative;
-  height: 13rem;
-  overflow: hidden;
-  -webkit-transition-property: height, visibility;
-  transition-property: height, visibility;
-  -webkit-transition-duration: 0.35s;
-  transition-duration: 0.35s;
-  -webkit-transition-timing-function: ease;
-  transition-timing-function: ease;
-}
-
-.card-container a.collapsed::after {
-  content: "+ Show More";
-}
-
-.card-container a:not(.collapsed)::after {
-  content: "- Show Less";
+.text-sm {
+  font-size: small;
 }
