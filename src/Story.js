@@ -3,24 +3,25 @@ import { Card, CardText, Collapse, Button } from "reactstrap";
 
 function Story(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = async () => {
+    await setIsOpen(!isOpen)
+    changeButton()
+  };
 
+  const changeButton = () => {
+    let button = document.getElementById(`${props.stories.id}_button`)
+    button.innerHTML = isOpen ? "more" : "less"
+  }
   return (
     <Card
       className="border m-1 shadow-sm vw-90 card-container"
       id={props.stories.id}
     >
-      <h5>{props.stories.title}</h5>
-      <Collapse id={`${props.stories.id}_text`} isOpen={isOpen}>
-        <CardText className="card-text-sm" aria-expanded="false">
-          {props.stories.plot}
-        </CardText>
+      <h4>{props.stories.title}</h4>
+      <Collapse isOpen={isOpen} id={`${props.stories.id}_text`}>
+        <CardText>{props.stories.plot}</CardText>
       </Collapse>
-      <div className="footer">
-        <Button type="button" onClick={toggle}>
-          + Show More
-        </Button>
-      </div>
+      <Button onClick={toggle} id={`${props.stories.id}_button`}>more</Button>
     </Card>
   );
 }

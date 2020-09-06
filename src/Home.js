@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Story from "./Story";
 
 function Home(props) {
-  console.log(props)
   const stories = props.data.stories.map((el, i) => (
     <Story stories={el} id={i} />
   ));
