@@ -6,25 +6,26 @@ function Story(props) {
   const toggle = () => setIsOpen(!isOpen);
 
   const onEntered = () =>
-    (document.getElementById(`${props.stories.id}_button`).innerHTML = "less");
+    (document.getElementById(`${props.story.id}_button`).innerHTML = "less");
   const onExiting = () =>
-    (document.getElementById(`${props.stories.id}_button`).innerHTML = "more");
-
+    (document.getElementById(`${props.story.id}_button`).innerHTML = "more");
+  const user = props.story.narrator ? <small> Narrator: {props.story.narrator}</small> : null
   return (
     <Card
       className="border m-1 shadow-sm vw-90 card-container"
-      id={props.stories.id}
+      id={props.story.id}
     >
-      <h4>{props.stories.title}</h4>
+      <h4>{props.story.title}</h4>
+      {user}
       <Collapse onExiting={onExiting} onEntered={onEntered} isOpen={isOpen}>
-        <CardText id={`${props.stories.id}_text`} >
-          {props.stories.plot}
+        <CardText id={`${props.story.id}_text`} >
+          {props.story.plot}
         </CardText>
       </Collapse>
       <Button
         style={{ marginTop: "1rem" }}
         onClick={toggle}
-        id={`${props.stories.id}_button`}
+        id={`${props.story.id}_button`}
       >
         more
       </Button>

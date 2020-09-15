@@ -152,7 +152,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <Router>
           <Header
             user={this.state.user}

@@ -1,3 +1,8 @@
+body {
+  height: 100%;
+  margin: 0;
+}
+
 .profile {
   width: 35px;
   height: 35px;
@@ -22,6 +27,12 @@
   overflow: hidden;
 }
 
+.full-height {
+  height: 90vh;
+  display: flex;
+  flex-flow: column;
+}
+
 .collapsing {
   height: auto !important;
   max-height: 12rem;
@@ -43,4 +54,8 @@
 
 .create-container {
   padding: 3%;
+}
+
+.grow {
+  flex: 1 1 auto;
 }
