@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Story from "./Story";
 
 function Home(props) {
   const stories = props.data.stories.map((el, i) => (
-    <Story stories={el} id={i} />
+    <Story stories={el} id={el.id} key={i} />
   ));
 
   return (

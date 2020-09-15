@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import anonomous from "./img/anonomous.png";
 import {
   Navbar,
-  NavbarBrand,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Dropdown,
   Form,
   Input,
-  Media,
 } from "reactstrap";
 
 function Header(props) {
@@ -30,6 +28,12 @@ function Header(props) {
         <DropdownItem>
           <Link to="/dashboard">Dashboard</Link>
         </DropdownItem>
+        <DropdownItem>
+          <Link to="/create">Create Story</Link>
+        </DropdownItem>
+        <DropdownItem>
+          <Link to="/">Home</Link>
+        </DropdownItem>
         <DropdownItem divider />
         <DropdownItem onClick={props.logout}>Logout</DropdownItem>
       </DropdownMenu>
@@ -46,12 +50,14 @@ function Header(props) {
       <DropdownMenu right>
         <DropdownItem onClick={props.login}>Login</DropdownItem>
         <DropdownItem divider />
-        <DropdownItem>Signup</DropdownItem>
+        <DropdownItem>
+          <Link to="/signup">Signup</Link>
+        </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );
   return (
-    <Navbar color="dark" lights className="justify-content-between sticky-top">
+    <Navbar color="dark" className="justify-content-between sticky-top">
       <Form xs="auto" className="align-top">
         <Input
           className="form-control-sm"

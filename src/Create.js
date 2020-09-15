@@ -1,12 +1,13 @@
 import React from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { withRouter, Redirect } from "react-router-dom";
 
-class Signup extends React.Component {
+class Create extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      username: null,
-      password: null,
+      title: "",
+      plot: "",
     };
   }
   handlchange = (e) => {
@@ -17,31 +18,37 @@ class Signup extends React.Component {
 
   render() {
     const submit = () => {
-        this.props.create(this.state)
+      this.props.create(this.state);
+      this.props.history.push('/')
     };
+
+    // if (this.state.redirect) {
+    //   return <Redirect to="/" />;
+    // }
+
     return (
       <div className="border m-1 shadow-sm create-container">
         <Form>
           <FormGroup>
-            <Label for="title">Username</Label>
+            <Label for="title">Title</Label>
             <Input
               type="text"
-              name="username"
-              id="username"
-              value={this.state.username}
+              name="title"
+              id="title"
+              value={this.state.title}
               onChange={this.handlchange}
-              placeholder="username"
+              placeholder="Crows and Cowards"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="plot">Password</Label>
+            <Label for="plot">Plot</Label>
             <Input
-              type="password"
-              name="password"
-              id="password"
-              value={this.state.password}
+              type="textarea"
+              name="plot"
+              id="plot"
+              value={this.state.plot}
               onChange={this.handlchange}
-              placeholder="password"
+              placeholder="In a small town, not far ..."
             />
           </FormGroup>
           <Button onClick={submit}>Submit</Button>
@@ -51,4 +58,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup
+export default withRouter(Create);

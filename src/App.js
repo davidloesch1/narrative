@@ -8,6 +8,7 @@ import { Lost } from "./Lost";
 import Header from "./Header";
 import Signup from "./Signup";
 import PrivateRoute from "./PrivateRoute";
+import Create from "./Create";
 import { v4 as uuidv4 } from "uuid";
 
 const axios = require("axios").default;
@@ -19,6 +20,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: false,
       user: null,
+      users: [],
       stories: [
         {
           id: uuidv4(),
@@ -70,6 +72,7 @@ class App extends React.Component {
         },
       ],
     };
+    // this.createStory = this.createStory.bind(this)
   }
 
   componentDidMount() {
@@ -131,6 +134,22 @@ class App extends React.Component {
     });
   };
 
+  createStory = (storyObj) => {
+    let arr = this.state.stories;
+    arr.unshift(storyObj);
+    this.setState({
+      stories: arr,
+    });
+  };
+
+  createUser = (userObj) => {
+    let arr = this.state.users;
+    arr.unshift(userObj);
+    this.setState({
+      users: arr,
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -153,11 +172,26 @@ class App extends React.Component {
               path="/login"
               component={() => <Login login={this.login} />}
             />
+            <Route
+              exact
+              path="/signup"
+              component={() => (
+                <Signup create={this.createUser} />
+              )}
+            />
             <PrivateRoute
               exact
               path="/dashboard"
               authed={this.state.loggedIn}
               component={() => <Dashboard user={this.state.user} />}
+            />
+            <PrivateRoute
+              exact
+              path="/create"
+              authed={this.state.loggedIn}
+              component={() => (
+                <Create user={this.state.user} create={this.createStory} />
+              )}
             />
             <Route exact path="/signup" component={Signup} />
             <Route path="*" component={Lost} />

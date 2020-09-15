@@ -17,12 +17,14 @@
 
 .card-container .collapse:not(.show) {
   display: block;
-  height: 12rem;
+  height: auto;
+  max-height: 12rem;
   overflow: hidden;
 }
 
 .collapsing {
-  height: 12rem !important;
+  height: auto !important;
+  max-height: 12rem;
   overflow: hidden;
   transition-timing-function: ease;
   transition-duration: 10s;
@@ -37,4 +39,8 @@
 
 .text-sm {
   font-size: small;
+}
+
+.create-container {
+  padding: 3%;
 }
