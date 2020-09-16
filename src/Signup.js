@@ -5,8 +5,8 @@ class Signup extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      username: null,
-      password: null,
+      username: "",
+      password: "",
     };
   }
   handlechange = (e) => {

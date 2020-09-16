@@ -20,10 +20,12 @@ body {
   font-size: xx-small;
 }
 
-.card-container .collapse:not(.show) {
+.card-container {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 3%;
   display: block;
   height: auto;
-  max-height: 12rem;
   overflow: hidden;
 }
 
@@ -31,21 +33,6 @@ body {
   height: 90vh;
   display: flex;
   flex-flow: column;
-}
-
-.collapsing {
-  height: auto !important;
-  max-height: 12rem;
-  overflow: hidden;
-  transition-timing-function: ease;
-  transition-duration: 10s;
-  transition-property: all;
-}
-
-.card-container {
-  font-size: 1rem;
-  line-height: 1.5;
-  padding: 3%;
 }
 
 .text-sm {
@@ -58,4 +45,30 @@ body {
 
 .grow {
   flex: 1 1 auto;
+}
+
+.baskerville {
+  font-family: "Libre Baskerville", serif;
+}
+
+.raleway {
+  font-family: "Raleway", sans-serif;
+}
+.small {
+  font-size: small;
+}
+
+.footer-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  margin-top: 25px;
+}
+
+.overflow {
+  height: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -2,8 +2,8 @@ import React from "react";
 import Story from "./Story";
 
 function Home(props) {
-  const stories = props.data.stories.map((el, i) => (
-    <Story story={el} id={el.id} key={i} />
+  const stories = props.data.stories.map((el) => (
+    <Story story={el} id={el.id} key={el.id} />
   ));
 
   return (

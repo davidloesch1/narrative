@@ -29,7 +29,12 @@ class App extends React.Component {
       stories: [
         {
           id: uuidv4(),
+          narrator: "David",
           title: "The Joker",
+          genres: {Action: true, Adventure: true},
+          upvotes: 0,
+          downvotes: 0,
+          comments: [{},{}],
           plot:
             "Lorem ipsom is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         },
@@ -156,6 +161,12 @@ class App extends React.Component {
     });
   };
 
+  upvote = (id) => {
+    this.setState(prevState => ({
+      
+    }))
+  }
+
   render() {
     return (
       <div className="app">
@@ -197,7 +208,14 @@ class App extends React.Component {
                 <Create user={this.state.user} create={this.createStory} />
               )}
             />
-            <Route exact path="/signup" component={Signup} />
+
+            {/* this part isn't working just yet. the goal is to make it so that a user can't get to the signup page if they are logged in */}
+            <PrivateRoute
+              exact
+              path="/signup"
+              authed={!this.state.loggedIn}
+              component={() => (<Signup />)}
+            />
             <Route path="*" component={Lost} />
           </Switch>
         </Router>
