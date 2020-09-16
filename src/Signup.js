@@ -9,7 +9,7 @@ class Signup extends React.Component {
       password: null,
     };
   }
-  handlchange = (e) => {
+  handlechange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -17,7 +17,7 @@ class Signup extends React.Component {
 
   render() {
     const submit = () => {
-        this.props.create(this.state)
+      this.props.create(this.state);
     };
     return (
       <div className="border m-1 shadow-sm create-container">
@@ -29,7 +29,7 @@ class Signup extends React.Component {
               name="username"
               id="username"
               value={this.state.username}
-              onChange={this.handlchange}
+              onChange={this.handlechange}
               placeholder="username"
             />
           </FormGroup>
@@ -40,7 +40,7 @@ class Signup extends React.Component {
               name="password"
               id="password"
               value={this.state.password}
-              onChange={this.handlchange}
+              onChange={this.handlechange}
               placeholder="password"
             />
           </FormGroup>
@@ -51,4 +51,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup
+export default Signup;
