@@ -23,7 +23,7 @@ class Signup extends React.Component {
       <div className="border m-1 shadow-sm create-container">
         <Form>
           <FormGroup>
-            <Label for="title">Username</Label>
+            <Label for="username">Username</Label>
             <Input
               type="text"
               name="username"
@@ -34,7 +34,7 @@ class Signup extends React.Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="plot">Password</Label>
+            <Label for="password">Password</Label>
             <Input
               type="password"
               name="password"

@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter,
+} from "react-router-dom";
 import "./App.css";
 import { Login } from "./Login";
 import Dashboard from "./Dashboard";
@@ -132,6 +137,7 @@ class App extends React.Component {
       loggedIn: true,
       user: "David",
     });
+    this.props.history.push("/");
   };
 
   createStory = (storyObj) => {
@@ -175,9 +181,7 @@ class App extends React.Component {
             <Route
               exact
               path="/signup"
-              component={() => (
-                <Signup create={this.createUser} />
-              )}
+              component={() => <Signup create={this.createUser} />}
             />
             <PrivateRoute
               exact
@@ -202,4 +206,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
