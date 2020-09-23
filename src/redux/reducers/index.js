@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
-import storyReducer from './storyReducer'
+import stories from './storyReducer'
+import chapters from './chapterReducer'
+import comments from './commentReducer'
 
 export default combineReducers({
-    storyReducer
+    stories,
+    chapters,
+    comments
 })

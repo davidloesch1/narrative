@@ -1,16 +1,17 @@
 import React from "react";
 import Story from "./Story";
 
-function Home(props) {
-  const stories = props.data.stories.map((el) => (
-    <Story story={el} id={el.id} key={el.id} />
-  ));
-
+const Home = ({ stories }) => {
+  let storiesArray = Object.values(stories);
+  console.log(storiesArray);
   return (
     <div className="text-dark">
-      {stories}
+      {storiesArray.map((story) => {
+        console.log(story);
+        return <Story key={story.id} story={story} />;
+      })}
     </div>
   );
-}
+};
 
 export default Home;

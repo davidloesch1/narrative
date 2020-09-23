@@ -1,10 +1,12 @@
+import { v4 as uuidv4 } from "uuid";
+
 const stories = (state = [], action) => {
   switch (action.type) {
     case "NEW_STORY":
       return [
         ...state,
         {
-          id: action.id,
+          id: uuidv4(),
           narrator: action.object.narrator,
           title: action.object.title,
           genres: action.object.genres,
@@ -41,6 +43,17 @@ const stories = (state = [], action) => {
         if (story.id === action.storyId) {
           let array = story.comments;
           array.push(action.commentId);
+          return { ...story, comments: array };
+        } else {
+          return story;
+        }
+      });
+    case "DELETE_COMMENT":
+      return state.map((story) => {
+        if (story.id === action.storyId) {
+          let array = story.comments.filter(
+            (comment) => comment.id !== action.commentId
+          );
           return { ...story, comments: array };
         } else {
           return story;

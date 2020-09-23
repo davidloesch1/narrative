@@ -21,14 +21,10 @@ import {
   faCommentAlt as regComment,
 } from "@fortawesome/free-regular-svg-icons";
 
-// const solidThumbUp = <FontAwesomeIcon icon={solidThumbUp}/>
-// const solidThumbDown = <FontAwesomeIcon icon={solidThumbDown}/>
-// const regThumbUp = <FontAwesomeIcon icon={regThumbUp}/>
-// const regThumbDown = <FontAwesomeIcon icon={regThumbDown}/>
-
-function Story(props) {
-  let votes = props.story.upvotes - props.story.downvotes;
-  let comments = props.story.comments;
+const Story = ({ story }) => {
+  console.log(story)
+  let votes = story.upvotes - story.downvotes;
+  let comments = story.comments;
   if (comments) {
     comments = comments.length;
     console.log(comments);
@@ -37,16 +33,16 @@ function Story(props) {
   const toggle = () => setIsOpen(!isOpen);
 
   const onEntered = () =>
-    (document.getElementById(`${props.story.id}_button`).innerHTML = "less");
+    (document.getElementById(`${story.id}_button`).innerHTML = "less");
   const onExiting = () =>
-    (document.getElementById(`${props.story.id}_button`).innerHTML = "more");
-  const user = props.story.narrator ? (
+    (document.getElementById(`${story.id}_button`).innerHTML = "more");
+  const user = story.narrator ? (
     <small style={{ fontSize: "x-small" }}>
       {" "}
-      Narrator: {props.story.narrator}
+      Narrator: {story.narrator}
     </small>
   ) : null;
-  let genres = props.story.genres ? props.story.genres : null;
+  let genres = story.genres ? story.genres : null;
   if (genres) {
     genres = Object.keys(genres).filter((key) => genres[key]);
     genres = genres.map((element) => {
@@ -57,18 +53,18 @@ function Story(props) {
   return (
     <Card
       className="border m-1 shadow-sm vw-90 card-container"
-      id={props.story.id}
+      id={story.id}
     >
-      {/* <FontAwesomeIcon icon={solidThumbDown} />
-      <FontAwesomeIcon icon={solidThumbUp} /> */}
-
       {user}
       <br></br>
-      <h4 className="baskerville">{props.story.title}</h4>
+      <h4 className="baskerville">{story.title}</h4>
       <small>{genres}</small>
       <br></br>
-      <CardText id={`${props.story.id}_text`} className="raleway small overflow">
-        {props.story.plot}
+      <CardText
+        id={`${story.id}_text`}
+        className="raleway small overflow"
+      >
+        {story.plot}
       </CardText>
       <Row className="footer">
         <Col className="footer-col">
@@ -104,6 +100,6 @@ function Story(props) {
       </Row>
     </Card>
   );
-}
+};
 
 export default Story;

@@ -13,7 +13,8 @@ import { Lost } from "./Lost";
 import Header from "./Header";
 import Signup from "./Signup";
 import PrivateRoute from "./PrivateRoute";
-import Create from "./Create";
+import Create from "./containers/Create";
+import VisibleStoriesList from "./containers/VisibleStoriesList";
 
 const axios = require("axios").default;
 axios.defaults.baseURL = "http://localhost:5000";
@@ -246,7 +247,7 @@ class App extends React.Component {
             <Route
               exact
               path="/"
-              component={() => <Home data={this.state} />}
+              component={() => <VisibleStoriesList />}
             />
             <Route
               exact
