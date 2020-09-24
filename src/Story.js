@@ -27,7 +27,6 @@ const Story = ({ story }) => {
   let comments = story.comments;
   if (comments) {
     comments = comments.length;
-    console.log(comments);
   }
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -38,7 +37,6 @@ const Story = ({ story }) => {
     (document.getElementById(`${story.id}_button`).innerHTML = "more");
   const user = story.narrator ? (
     <small style={{ fontSize: "x-small" }}>
-      {" "}
       Narrator: {story.narrator}
     </small>
   ) : null;

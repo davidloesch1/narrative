@@ -4,7 +4,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import { newStory } from "../redux/actions/storyActions";
 import { connect } from "react-redux";
 
-const Create = (props, { dispatch }) => {
+const NewStory = (props, { dispatch }) => {
   let [title, setTitle] = useState("")
   let [plot, setPlot] = useState("")
   let [genres, setGenres] = useState([])
@@ -12,7 +12,7 @@ const Create = (props, { dispatch }) => {
     title: title,
     plot: plot,
     genres: genres,
-    narrator: this.props.narrator
+    narrator: props.narrator
   };
 
   // const handlechange = (e) => {
@@ -176,4 +176,4 @@ const Create = (props, { dispatch }) => {
   );
 };
 
-export default withRouter(Create);
+export default withRouter(NewStory);

@@ -13,8 +13,8 @@ import { Lost } from "./Lost";
 import Header from "./Header";
 import Signup from "./Signup";
 import PrivateRoute from "./PrivateRoute";
-import Create from "./containers/Create";
 import VisibleStoriesList from "./containers/VisibleStoriesList";
+import NewStory from "./create/NewStory";
 
 const axios = require("axios").default;
 axios.defaults.baseURL = "http://localhost:5000";
@@ -149,7 +149,7 @@ class App extends React.Component {
       },
     };
 
-    // this.createStory = this.createStory.bind(this)
+
   }
 
   componentDidMount() {
@@ -270,7 +270,7 @@ class App extends React.Component {
               path="/create"
               authed={this.state.loggedIn}
               component={() => (
-                <Create user={this.state.user} create={this.createStory} />
+                <NewStory />
               )}
             />
 
