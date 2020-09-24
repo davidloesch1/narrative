@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import anonomous from "./img/anonomous.png";
 import {
   Navbar,
@@ -10,6 +11,9 @@ import {
   Form,
   Input,
 } from "reactstrap";
+const mapStateToProps = (state) => ({
+  user: state.user
+})
 
 function Header(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -73,4 +77,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default connect(mapStateToProps)(Header);
