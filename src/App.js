@@ -6,14 +6,14 @@ import {
   withRouter,
 } from "react-router-dom";
 import "./App.css";
-import { Login } from "./Login";
+import Login from "./Login";
 import Dashboard from "./Dashboard";
 import Home from "./Home";
 import { Lost } from "./Lost";
 import Header from "./Header";
 import Signup from "./Signup";
 import PrivateRoute from "./PrivateRoute";
-import VisibleStoriesList from "./containers/VisibleStoriesList";
+import VisibleStoriesList from "./containers/HomeContainer";
 import NewStory from "./create/NewStory";
 
 const axios = require("axios").default;
@@ -43,9 +43,9 @@ class App extends React.Component {
     // });
   }
 
-  logout = (event) => {
-    event.preventDefault();
-    console.log("logging out");
+  // logout = (event) => {
+  //   event.preventDefault();
+  //   console.log("logging out");
     // axios.post("/auth/logout").then((response) => {
     //   console.log(response.data);
     //   if (response.status === 200) {
@@ -55,14 +55,14 @@ class App extends React.Component {
     //     });
     //   }
     // });
-    this.setState({
-      loggedIn: false,
-      user: null,
-    });
-  };
+  //   this.setState({
+  //     loggedIn: false,
+  //     user: null,
+  //   });
+  // };
 
-  login = (username, password) => {
-    console.log("loggin in!");
+  // login = (username, password) => {
+  //   console.log("loggin in!");
     // axios
     //   .post("/auth/login", {
     //     username,
@@ -78,12 +78,12 @@ class App extends React.Component {
     //       });
     //     }
     //   });
-    this.setState({
-      loggedIn: true,
-      user: "David",
-    });
-    this.props.history.push("/");
-  };
+  //   this.setState({
+  //     loggedIn: true,
+  //     user: "David",
+  //   });
+  //   this.props.history.push("/");
+  // };
 
   createStory = (storyObj) => {
     let arr = this.state.stories;
@@ -101,19 +101,15 @@ class App extends React.Component {
     });
   };
 
-  upvote = (id) => {
-    this.setState((prevState) => ({}));
-  };
 
   render() {
     return (
       <div className="app">
         <Router>
           <Header
-            user={this.state.user}
-            login={this.login}
-            logout={this.logout}
-            loggedIn={this.state.loggedIn}
+            // login={this.login}
+            // logout={this.logout}
+            // loggedIn={this.state.loggedIn}
           />
 
           <Switch>

@@ -11,15 +11,18 @@ import {
   Form,
   Input,
 } from "reactstrap";
+
+
 const mapStateToProps = (state) => ({
   user: state.user
 })
 
 function Header(props) {
+  console.log(props)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  let greeting = props.loggedIn ? (
+  let greeting = props.user ? (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
       <DropdownToggle tag={Link} className="profile_link">
         <img
@@ -52,7 +55,7 @@ function Header(props) {
         />
       </DropdownToggle>
       <DropdownMenu right>
-        <DropdownItem onClick={props.login}>Login</DropdownItem>
+        <DropdownItem ><Link to="/login">Login</Link></DropdownItem>
         <DropdownItem divider />
         <DropdownItem>
           <Link to="/signup">Signup</Link>

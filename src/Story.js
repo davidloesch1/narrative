@@ -31,10 +31,10 @@ const Story = ({ story }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const onEntered = () =>
-    (document.getElementById(`${story.id}_button`).innerHTML = "less");
-  const onExiting = () =>
-    (document.getElementById(`${story.id}_button`).innerHTML = "more");
+  // const onEntered = () =>
+  //   (document.getElementById(`${story.id}_button`).innerHTML = "less");
+  // const onExiting = () =>
+  //   (document.getElementById(`${story.id}_button`).innerHTML = "more");
   const user = story.narrator ? (
     <small style={{ fontSize: "x-small" }}>
       Narrator: {story.narrator}
