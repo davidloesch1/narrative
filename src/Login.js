@@ -3,15 +3,14 @@ import "./App.css";
 import auth from "./auth";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { login, logout } from "./redux/actions/userActions"
+import { login } from "./redux/actions/userActions"
 
 const mapStateToProps = (state) => ({
   user: state.user,
 });
 
 const actionCreators = {
-    login,
-    logout
+    login
 }
 
 const Login = (props) => {
@@ -20,12 +19,13 @@ const Login = (props) => {
   let [password, setPassword] = useState("");
 
   const handleClick = () => {
-    console.log(props.login({ username, password }));
+    // console.log(props.login({ username, password }));
     //   props.login(username, password)
     props.login({ username, password });
     // username = setUsername("");
     // password = setPassword("");
   };
+
   return (
     <div className="border m-1 shadow-sm create-container">
       <Form>

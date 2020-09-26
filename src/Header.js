@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import anonomous from "./img/anonomous.png";
+import { logout } from "./redux/actions/userActions"
+
 import {
   Navbar,
   DropdownToggle,
@@ -13,16 +15,21 @@ import {
 } from "reactstrap";
 
 
-const mapStateToProps = (state) => ({
-  user: state.user
-})
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {user: state.user}
+}
+
+const actionCreator = {
+  logout
+}
 
 function Header(props) {
   console.log(props)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  let greeting = props.user ? (
+  let greeting = props.user? (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
       <DropdownToggle tag={Link} className="profile_link">
         <img
@@ -80,4 +87,4 @@ function Header(props) {
   );
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actionCreator)(Header);

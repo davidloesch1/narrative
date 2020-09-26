@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-const stories = (state = [], action) => {
+const stories = (state = {}, action) => {
   switch (action.type) {
     case "NEW_STORY":
       return [
