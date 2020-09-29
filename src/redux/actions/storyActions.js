@@ -29,12 +29,14 @@ export const deleteComment = (storyId, commentId) => ({
   commentId,
 });
 
-export const upVote = (storyId) => ({
+export const upvote = (storyId, userId) => ({
   type: actions.UPVOTE,
   storyId,
+  userId
 });
 
-export const downVote = (storyId) => ({
+export const downvote = (storyId, userId) => ({
   type: actions.DOWNVOTE,
   storyId,
+  userId
 });

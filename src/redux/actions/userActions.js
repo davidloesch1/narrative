@@ -5,7 +5,6 @@ export const logout = () => ({
 });
 
 export const login = user => {
-    console.log("made it to useractions")
   return {
     type: actions.LOGIN,
     user

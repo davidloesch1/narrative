@@ -1,20 +1,14 @@
 import { connect } from "react-redux";
+import { upvote, downvote } from '../redux/actions/storyActions'
 import Home from "../Home";
 
-// const getVisibleStories = (stories, filter) => {
-//   switch (filter) {
-//     case SHOW_ALL:
-//       return stories;
-//   }
-// };
-const mapStateToProps = (state) => {
-  console.log(state);
-  return ({
-    stories: state.stories,
-  });
-};
+const mapStateToProps = (state) => ({
+  stories: state.stories,
+  user: state.user,
+});
 const mapDispatchToProps = (dispatch) => ({
-  // not here yet
+  upvote: (storyId, userId) => dispatch(upvote(storyId, userId)),
+  downvote: (storyId, userId) => dispatch(downvote(storyId, userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

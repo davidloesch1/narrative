@@ -4,13 +4,15 @@ import auth from "./auth";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { login } from "./redux/actions/userActions"
+import { loggedIn } from "./redux/actions/loggedInActions"
 
 const mapStateToProps = (state) => ({
   user: state.user,
 });
 
 const actionCreators = {
-    login
+    login,
+    loggedIn
 }
 
 const Login = (props) => {
@@ -18,10 +20,11 @@ const Login = (props) => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
-  const handleClick = () => {
+  const handleClick = async () => {
     // console.log(props.login({ username, password }));
     //   props.login(username, password)
-    props.login({ username, password });
+    await props.login({ username, password });
+    props.loggedIn()
     // username = setUsername("");
     // password = setPassword("");
   };

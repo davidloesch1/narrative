@@ -34,12 +34,14 @@ export const deleteComment = (chapId, commentId) => ({
   commentId,
 });
 
-export const upVote = (chapId) => ({
+export const upvote = (chapId, userId) => ({
   type: action.UPVOTE,
   chapId,
+  userId
 });
 
-export const downVote = (chapId) => ({
+export const downvote = (chapId, userId) => ({
   type: action.DOWNVOTE,
   chapId,
+  userId
 });

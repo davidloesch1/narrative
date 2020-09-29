@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import anonomous from "./img/anonomous.png";
-import { logout } from "./redux/actions/userActions"
+import { logout } from "./redux/actions/userActions";
+import { loggedIn } from "./redux/actions/loggedInActions";
 
 import {
   Navbar,
@@ -14,22 +15,27 @@ import {
   Input,
 } from "reactstrap";
 
-
 const mapStateToProps = (state) => {
-  console.log(state)
-  return {user: state.user}
-}
+  console.log(state);
+  return { user: state.user };
+};
 
 const actionCreator = {
-  logout
-}
+  logout,
+  loggedIn,
+};
 
 function Header(props) {
-  console.log(props)
+  console.log(props);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  let greeting = props.user? (
+  const loggingOut = () => {
+    props.logout();
+    props.loggedIn();
+  };
+
+  let greeting = props.user ? (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
       <DropdownToggle tag={Link} className="profile_link">
         <img
@@ -49,7 +55,7 @@ function Header(props) {
           <Link to="/">Home</Link>
         </DropdownItem>
         <DropdownItem divider />
-        <DropdownItem onClick={props.logout}>Logout</DropdownItem>
+        <DropdownItem onClick={loggingOut}>Logout</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   ) : (
@@ -62,7 +68,12 @@ function Header(props) {
         />
       </DropdownToggle>
       <DropdownMenu right>
-        <DropdownItem ><Link to="/login">Login</Link></DropdownItem>
+        <DropdownItem>
+          <Link to="/login">Login</Link>
+        </DropdownItem>
+        <DropdownItem>
+          <Link to="/">Home</Link>
+        </DropdownItem>
         <DropdownItem divider />
         <DropdownItem>
           <Link to="/signup">Signup</Link>

@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
 
-const chapters = (state = [], action) => {
+const chapters = (state = {}, action) => {
   switch (action.type) {
     case "NEW_CHAPTER":
       return [
         ...state,
         {
-          id:  uuidv4(),
+          id: uuidv4(),
           author: action.object.author,
           content: action.object.content,
           comments: [],
@@ -63,11 +63,9 @@ const chapters = (state = [], action) => {
         }
       });
     case "UPVOTE":
-      return state.map((chapter) =>
-        chapter.id === action.chapId
-          ? { ...chapter, upvotes: chapter.upvotes++ }
-          : chapter
-      );
+      let id = action.chapId
+      console.log(state[id])
+      return { ...state, [id]: { ...state, upvotes: state[id].upvotes++ } };
     case "DOWNVOTE":
       return state.map((chapter) =>
         chapter.id === action.chapId
@@ -79,4 +77,4 @@ const chapters = (state = [], action) => {
   }
 };
 
-export default chapters
+export default chapters;

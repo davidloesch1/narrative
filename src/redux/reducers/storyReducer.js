@@ -3,10 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 const stories = (state = {}, action) => {
   switch (action.type) {
     case "NEW_STORY":
-      return [
+      console.log("making it to new story reducer")
+      let newId = uuidv4();
+      return {
         ...state,
-        {
-          id: uuidv4(),
+        [newId]: {
+          id: newId,
           narrator: action.object.narrator,
           title: action.object.title,
           genres: action.object.genres,
@@ -17,7 +19,7 @@ const stories = (state = {}, action) => {
           comments: [],
           plot: action.object.plot,
         },
-      ];
+      };
     case "CHAPTER_SUBMISSION":
       return state.map((story) => {
         if (story.id === action.storyId) {
@@ -60,11 +62,13 @@ const stories = (state = {}, action) => {
         }
       });
     case "UPVOTE":
-      return state.map((story) =>
-        story.id === action.storyId
-          ? { ...story, upvotes: story.upvotes++ }
-          : story
-      );
+      let id = action.storyId
+      return ({...state, [id]: {...state, upvotes: state[id].upvotes++}})
+      // return state.map((story) =>
+      //   story.id === action.storyId
+      //     ? { ...story, upvotes: story.upvotes++ }
+      //     : story
+      // );
     case "DOWNVOTE":
       return state.map((story) =>
         story.id === action.storyId

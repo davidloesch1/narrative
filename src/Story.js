@@ -1,14 +1,5 @@
-import React, { useState } from "react";
-import {
-  Card,
-  CardText,
-  Collapse,
-  Button,
-  Badge,
-  CardFooter,
-  Col,
-  Row,
-} from "reactstrap";
+import React from "react";
+import { Card, CardText, Badge, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsDown as solidThumbDown,
@@ -21,25 +12,21 @@ import {
   faCommentAlt as regComment,
 } from "@fortawesome/free-regular-svg-icons";
 
-const Story = ({ story }) => {
-  console.log(story)
+const Story = (props) => {
+  console.log(props);
+  let story = props.story;
+  let user = props.user;
+
   let votes = story.upvotes - story.downvotes;
   let comments = story.comments;
   if (comments) {
     comments = comments.length;
   }
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
 
-  // const onEntered = () =>
-  //   (document.getElementById(`${story.id}_button`).innerHTML = "less");
-  // const onExiting = () =>
-  //   (document.getElementById(`${story.id}_button`).innerHTML = "more");
-  const user = story.narrator ? (
-    <small style={{ fontSize: "x-small" }}>
-      Narrator: {story.narrator}
-    </small>
+  const narrator = story.narrator ? (
+    <small style={{ fontSize: "x-small" }}>Narrator: {story.narrator}</small>
   ) : null;
+
   let genres = story.genres ? story.genres : null;
   if (genres) {
     genres = Object.keys(genres).filter((key) => genres[key]);
@@ -48,25 +35,35 @@ const Story = ({ story }) => {
     });
   }
 
+  let upvote = () => {
+    if (user) {
+      props.upvote(story.id, user);
+    }
+    else{
+      alert("must be signed in to vote!")
+    }
+  };
+  let downvote = () => {
+    if (user) {
+      props.downvote(story.id, user);
+    }
+    else{
+      alert("must be signed in to vote!")
+    }
+  };
   return (
-    <Card
-      className="border m-1 shadow-sm vw-90 card-container"
-      id={story.id}
-    >
-      {user}
+    <Card className="border m-1 shadow-sm vw-90 card-container" id={story.id}>
+      {narrator}
       <br></br>
       <h4 className="baskerville">{story.title}</h4>
       <small>{genres}</small>
       <br></br>
-      <CardText
-        id={`${story.id}_text`}
-        className="raleway small overflow"
-      >
+      <CardText id={`${story.id}_text`} className="raleway small overflow">
         {story.plot}
       </CardText>
       <Row className="footer">
         <Col className="footer-col">
-          <FontAwesomeIcon icon={regThumbUp} size="sm" />
+          <FontAwesomeIcon icon={regThumbUp} onClick={upvote} size="sm" />
           <p
             style={{
               fontSize: "small",
@@ -77,7 +74,7 @@ const Story = ({ story }) => {
           >
             {votes}
           </p>
-          <FontAwesomeIcon icon={regThumbDown} size="sm" />
+          <FontAwesomeIcon icon={regThumbDown} onclick={downvote} size="sm" />
         </Col>
         <Col className="footer-col">
           <FontAwesomeIcon icon={regComment} size="sm" />
